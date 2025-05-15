@@ -19,13 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <ThemeProvider>
         <body className={inter.className}>
           <nav>
             <Navbar />
           </nav>
-          <main className="h-screen w-full px-[15%]">{children}</main>
+          <main className="h-screen w-full px-[10%] bg-black">{children}</main>
           <footer>
             <Footer />
           </footer>

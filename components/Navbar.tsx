@@ -3,15 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/public/logoDesign.png";
+import logo from "@/public/rebiuldLogo.png";
 
 export default function Navbar() {
   return (
-    <div className="w-full px-[15%] h-[90px] flex items-center justify-between bg-black mb-7">
+    <div className="w-full px-[15%] h-[100px] flex items-center justify-between bg-black">
       {/* Logo on the left */}
       <div className="flex items-center">
         <Link href="/" className="text-2xl font-bold text-white">
-          <Image className="rounded-xl not-last:" src={logo} alt="Rebiuld Construction" width={100} height={100} />
+          <Image className="not-last:" src={logo} alt="Rebiuld Construction" width={100} height={100} />
         </Link>
       </div>
 
