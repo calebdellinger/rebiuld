@@ -98,8 +98,8 @@ function Home() {
                 structure we build meets the highest standards of craftsmanship.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed mt-4">
-                We understand that your project is more than just a building – it's a vision of your 
-                future. That's why we combine innovative techniques with time-tested methods to create 
+                We understand that your project is more than just a building – it&apos;s a vision of your 
+                future. That&apos;s why we combine innovative techniques with time-tested methods to create 
                 spaces that are both beautiful and enduring.
               </p>
             </div>

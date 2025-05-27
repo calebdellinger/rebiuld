@@ -17,7 +17,7 @@ function About() {
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <h1 className="text-5xl font-bold text-center max-w-4xl leading-relaxed">
-              Building Tomorrow's Legacy, <br />Today
+              Building Tomorrow&apos;s Legacy, <br />Today
             </h1>
           </div>
         </div>
@@ -29,7 +29,7 @@ function About() {
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-xl text-gray-300 leading-relaxed">
-              At Rebiuld Construction, we're more than builders – we're innovators in construction,
+              At Rebiuld Construction, we&apos;re more than builders &mdash; we&apos;re innovators in construction,
               dedicated to turning visions into reality while setting new standards in quality and craftsmanship.
             </p>
           </div>
@@ -44,7 +44,7 @@ function About() {
               <h3 className="text-2xl font-bold mb-4">Innovation</h3>
               <p className="text-gray-300">
                 We constantly push boundaries, exploring better ways to build and smarter solutions
-                to challenges. Our unique approach, even down to our name with the 'i' before the 'u',
+                to challenges. Our unique approach, even down to our name with the &apos;i&apos; before the &apos;u&apos;,
                 reflects our innovative spirit.
               </p>
             </div>
@@ -52,15 +52,15 @@ function About() {
               <h3 className="text-2xl font-bold mb-4">Quality</h3>
               <p className="text-gray-300">
                 From foundations to finishing touches, we maintain the highest standards of quality
-                in every project. Our work isn't just about meeting expectations – it's about
+                in every project. Our work isn&apos;t just about meeting expectations &mdash; it&apos;s about
                 exceeding them.
               </p>
             </div>
             <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm">
               <h3 className="text-2xl font-bold mb-4">Community</h3>
               <p className="text-gray-300">
-                We build more than structures; we build relationships. Whether it's a front porch
-                for your rocking chair or a patio for family gatherings, we're here to enhance
+                We build more than structures; we build relationships. Whether it&apos;s a front porch
+                for your rocking chair or a patio for family gatherings, we&apos;re here to enhance
                 your living spaces.
               </p>
             </div>
@@ -84,14 +84,14 @@ function About() {
               <h2 className="text-3xl font-bold">Passion Drives Our Purpose</h2>
               <p className="text-xl text-gray-300 leading-relaxed">
                 At Rebiuld, we believe that great work comes from genuine passion and enjoyment. 
-                Our team doesn't just build structures – we pour our hearts into every project, 
+                Our team doesn&apos;t just build structures &mdash; we pour our hearts into every project, 
                 bringing enthusiasm and positive energy to each workday. We take pride in creating 
                 spaces that bring joy to others while having fun along the way.
               </p>
               <p className="text-xl text-gray-300 leading-relaxed">
                 This passion shows in our attention to detail, our collaborative spirit, and the 
                 smiles on our faces as we transform your vision into reality. When you work with 
-                Rebiuld, you're not just getting builders – you're getting a dedicated team that 
+                Rebiuld, you&apos;re not just getting builders &mdash; you&apos;re getting a dedicated team that 
                 truly loves what they do.
               </p>
             </div>
@@ -114,7 +114,7 @@ function About() {
                 <h2 className="text-3xl font-bold mb-6">Our Legacy</h2>
                 <p className="text-xl text-gray-100 leading-relaxed">
                   Every project we undertake is a chance to restore, innovate, and leave a lasting
-                  mark of excellence. We're building not just for today, but for generations to come.
+                  mark of excellence. We&apos;re building not just for today, but for generations to come.
                 </p>
               </div>
             </div>
@@ -128,7 +128,7 @@ function About() {
           <div className="bg-white/5 rounded-lg p-12 text-center backdrop-blur-sm">
             <h2 className="text-3xl font-bold mb-4">Ready to Build Your Dream?</h2>
             <p className="text-xl text-gray-300 mb-8">
-              Let's discuss how we can bring your vision to life.
+              Let&apos;s discuss how we can bring your vision to life.
             </p>
             <a 
               href="/contact" 
