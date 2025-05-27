@@ -4,13 +4,14 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingContactButton from "@/components/FloatingContactButton";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Shine & Seal",
+  title: "REBiULD Construction",
   description:
-    "The finest pressure washing and sealing services in the nation.",
+    "Where we build your dreams!",
 };
 
 export default function RootLayout({
@@ -21,12 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <ThemeProvider>
-        <body className={inter.className}>
+        <body className={`${inter.className} bg-black min-h-screen flex flex-col`}>
           <nav>
             <Navbar />
           </nav>
-          <main className="h-screen w-full px-[10%] bg-black">{children}</main>
-          <footer>
+          <main className="flex-grow w-full px-[10%]">{children}</main>
+          <FloatingContactButton />
+          <footer className="mt-auto">
             <Footer />
           </footer>
         </body>

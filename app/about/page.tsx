@@ -25,7 +25,7 @@ function About() {
       Whether you need a front porch to put that old rockin' chair on or maybe
       its a new patio in your backyard for all your friends to come over and
       enjoy you barbecue cooking. Were here to help. Join us as we build—not
-      just for today, but for generations to come.
+      just for today, but for generations to come. You also maybe wondering why the <b>i</b> is before the <b>u</b>... were just different.
     </div>
   );
 }

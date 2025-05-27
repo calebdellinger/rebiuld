@@ -1,0 +1,101 @@
+```json
+[
+  {
+    "Item Name": "Concrete Mix",
+    "Item Description": "Standard concrete mix for foundations",
+    "Price Per Unit": "230/yd (80sqft @4in)",
+    "Unit": "Cubic Yard"
+  },
+  {
+    "Item Name": "Excavator Rental",
+    "Item Description": "Heavy duty earth mover",
+    "Price Per Unit": "500",
+    "Unit": "Day"
+  },
+  {
+    "Item Name": "Gravel",
+    "Item Description": "Road base gravel (min 2in sub base)",
+    "Price Per Unit": "75",
+    "Unit": "YD"
+  },
+  {
+    "Item Name": "Compactor Rental",
+    "Item Description": "Soil compaction equipment",
+    "Price Per Unit": "",
+    "Unit": "Day"
+  },
+  {
+    "Item Name": "Rebar",
+    "Item Description": "Reinforcing steel bars",
+    "Price Per Unit": "11",
+    "Unit": "#4 20ft stick"
+  },
+  {
+    "Item Name": "Concrete Pump Rental",
+    "Item Description": "Concrete delivery system",
+    "Price Per Unit": "1400",
+    "Unit": "Hour"
+  },
+  {
+    "Item Name": "Labor",
+    "Item Description": "Setup",
+    "Price Per Unit": "300 @8hrs",
+    "Unit": "Day"
+  },
+  {
+    "Item Name": "Finisher",
+    "Item Description": "Concrete finisher",
+    "Price Per Unit": "400",
+    "Unit": "Day"
+  },
+  {
+    "Item Name": "Operator",
+    "Item Description": "Excavator/ skidsteer 4hour min",
+    "Price Per Unit": "75",
+    "Unit": "Hour"
+  },
+  {
+    "Item Name": "Dump trailer",
+    "Item Description": "Smaller jobs 4hour min",
+    "Price Per Unit": "45",
+    "Unit": "Hour"
+  },
+  {
+    "Item Name": "2 by 4",
+    "Item Description": "Wood",
+    "Price Per Unit": "15",
+    "Unit": "16ft"
+  },
+  {
+    "Item Name": "2 by 6",
+    "Item Description": "Wood",
+    "Price Per Unit": "20",
+    "Unit": "16ft"
+  },
+  {
+    "Item Name": "2 by 8",
+    "Item Description": "Wood",
+    "Price Per Unit": "25",
+    "Unit": "16ft"
+  },
+  {
+    "Item Name": "2 by 10",
+    "Item Description": "Wood",
+    "Price Per Unit": "38",
+    "Unit": "16ft"
+  },
+  {
+    "Item Name": "Rental Forms",
+    "Item Description": "2ft by 8ft by 1 1/8in",
+    "Price Per Unit": "10",
+    "Unit": "per form"
+  },
+  {
+    "Item Name": "Truck Hauling",
+    "Item Description": "10 yard box/ 6 hour min",
+    "Price Per Unit": "170",
+    "Unit": "hr"
+  }
+]
+```
+
