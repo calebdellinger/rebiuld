@@ -58,7 +58,8 @@ export default function Contact() {
         subject: "",
         message: "",
       });
-    } catch (error) {
+    } catch (error: unknown) {
+      console.error("Error sending message:", error);
       setStatus({
         isSubmitting: false,
         isSubmitted: false,
@@ -71,7 +72,7 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: "isit Us",
+      title: "Visit Us",
       details: "Seattle, Washington",
     },
     {
@@ -98,7 +99,7 @@ export default function Contact() {
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold mb-4">Get in Touch</h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Ready to start your project? We're here to turn your vision into reality.
+              Ready to start your project? We&apos;re here to turn your vision into reality.
             </p>
           </div>
         </AnimateOnScroll>
