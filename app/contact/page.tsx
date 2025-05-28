@@ -11,12 +11,7 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState({
-    isSubmitting: false,
-    isSubmitted: false,
-    isError: false,
-    message: "",
-  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,47 +21,6 @@ export default function Contact() {
       ...prev,
       [name]: value,
     }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus({ ...status, isSubmitting: true, message: "" });
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
-      setStatus({
-        isSubmitting: false,
-        isSubmitted: true,
-        isError: false,
-        message: "Message sent successfully! We will get back to you soon.",
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error: unknown) {
-      console.error("Error sending message:", error);
-      setStatus({
-        isSubmitting: false,
-        isSubmitted: false,
-        isError: true,
-        message: "Failed to send message. Please try again later.",
-      });
-    }
   };
 
   const contactInfo = [
@@ -148,7 +102,7 @@ export default function Contact() {
           {/* Contact Form */}
           <AnimateOnScroll>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8">
-              {status.isSubmitted ? (
+              {isSubmitted ? (
                 <div className="text-center py-16">
                   <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-500/20 mb-4">
                     <svg
@@ -166,16 +120,33 @@ export default function Contact() {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-bold mb-2">Thank you!</h3>
-                  <p className="text-gray-300 mb-8">{status.message}</p>
+                  <p className="text-gray-300 mb-8">Your message has been sent successfully! We will get back to you soon.</p>
                   <button
                     className="px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-colors"
-                    onClick={() => setStatus({ ...status, isSubmitted: false })}
+                    onClick={() => setIsSubmitted(false)}
                   >
                     Send another message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setIsSubmitted(true);
+                    setFormData({ name: "", email: "", subject: "", message: "" });
+                  }}
+                  className="space-y-6"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div className="hidden">
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -239,47 +210,12 @@ export default function Contact() {
                     />
                   </div>
 
-                  {status.isError && (
-                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-                      <p className="text-sm text-red-400">{status.message}</p>
-                    </div>
-                  )}
-
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      disabled={status.isSubmitting}
-                      className={`px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 ${
-                        status.isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                      }`}
+                      className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-all duration-300"
                     >
-                      {status.isSubmitting ? (
-                        <span className="flex items-center">
-                          <svg
-                            className="animate-spin -ml-1 mr-2 h-4 w-4 text-black"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            ></circle>
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            ></path>
-                          </svg>
-                          Sending...
-                        </span>
-                      ) : (
-                        "Send Message"
-                      )}
+                      Send Message
                     </button>
                   </div>
                 </form>
