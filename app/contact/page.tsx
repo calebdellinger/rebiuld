@@ -4,6 +4,12 @@ import React, { useState } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
+const encode = (data: { [key: string]: string }) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -11,7 +17,9 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -21,6 +29,40 @@ export default function Contact() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          ...formData
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error("Error sending message:", err);
+      setError("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -134,11 +176,7 @@ export default function Contact() {
                   method="POST"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setIsSubmitted(true);
-                    setFormData({ name: "", email: "", subject: "", message: "" });
-                  }}
+                  onSubmit={handleSubmit}
                   className="space-y-6"
                 >
                   <input type="hidden" name="form-name" value="contact" />
@@ -161,6 +199,7 @@ export default function Contact() {
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
                         placeholder="Your name"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                     <div>
@@ -176,6 +215,7 @@ export default function Contact() {
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
                         placeholder="your.email@example.com"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -192,6 +232,7 @@ export default function Contact() {
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
                       placeholder="What is this regarding?"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -207,15 +248,51 @@ export default function Contact() {
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
                       placeholder="How can we help you?"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
+
+                  {error && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                      <p className="text-sm text-red-400">{error}</p>
+                    </div>
+                  )}
 
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-all duration-300"
+                      disabled={isSubmitting}
+                      className={`px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 ${
+                        isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                      }`}
                     >
-                      Send Message
+                      {isSubmitting ? (
+                        <span className="flex items-center">
+                          <svg
+                            className="animate-spin -ml-1 mr-2 h-4 w-4 text-black"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                          Sending...
+                        </span>
+                      ) : (
+                        "Send Message"
+                      )}
                     </button>
                   </div>
                 </form>
