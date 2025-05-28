@@ -40,7 +40,7 @@ function About() {
       <AnimateOnScroll>
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm">
+            <div className="bg-white/5 p-8 rounded-xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
               <h3 className="text-2xl font-bold mb-4">Innovation</h3>
               <p className="text-gray-300">
                 We constantly push boundaries, exploring better ways to build and smarter solutions
@@ -48,7 +48,7 @@ function About() {
                 reflects our innovative spirit.
               </p>
             </div>
-            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm">
+            <div className="bg-white/5 p-8 rounded-xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
               <h3 className="text-2xl font-bold mb-4">Quality</h3>
               <p className="text-gray-300">
                 From foundations to finishing touches, we maintain the highest standards of quality
@@ -56,7 +56,7 @@ function About() {
                 exceeding them.
               </p>
             </div>
-            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm">
+            <div className="bg-white/5 p-8 rounded-xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
               <h3 className="text-2xl font-bold mb-4">Community</h3>
               <p className="text-gray-300">
                 We build more than structures; we build relationships. Whether it&apos;s a front porch

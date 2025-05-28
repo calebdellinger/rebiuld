@@ -1,3 +1,5 @@
+const { withNextVideo } = require("next-video/process");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -6,12 +8,13 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'photos.smugmug.com',
         port: '',
-        pathname: '/**',
+        pathname: '/RebiuldWeb/**',
       },
     ],
   },
   output: 'export',
   distDir: '.next',
+  images: {unoptimized: true}
 }
 
-module.exports = nextConfig 
+module.exports = withNextVideo(nextConfig); 

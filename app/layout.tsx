@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingContactButton from "@/components/FloatingContactButton";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
@@ -21,8 +22,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ThemeProvider>
-        <body className={`${inter.className} bg-black min-h-screen flex flex-col`}>
+      <head>
+        <Script id="theme-script" strategy="beforeInteractive">
+          {`
+            try {
+              if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+              } else {
+                document.documentElement.classList.remove('dark')
+              }
+            } catch (_) {}
+          `}
+        </Script>
+      </head>
+      <body className={`${inter.className} bg-black min-h-screen flex flex-col`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <nav className="sticky top-0 z-50">
             <Navbar />
           </nav>
@@ -47,8 +61,8 @@ export default function RootLayout({
           <footer className="mt-auto">
             <Footer />
           </footer>
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
