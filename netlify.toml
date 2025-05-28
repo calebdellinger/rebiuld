@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+  NEXT_PRIVATE_TARGET = "server"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = [
+    ".next/server/**/*.js",
+    ".next/server/**/_devPagesManifest.json",
+    ".next/server/**/_devMiddlewareManifest.json",
+    ".next/server/**/_middlewareManifest.json"
+  ] 
