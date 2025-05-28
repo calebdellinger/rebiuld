@@ -41,20 +41,6 @@ export default function RootLayout({
             <Navbar />
           </nav>
           <main className="flex-grow w-full px-[10%]">
-            {/* Hidden form for Netlify */}
-            <form
-              name="contact"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              hidden
-              action="/success"
-            >
-              <input type="text" name="name" />
-              <input type="email" name="email" />
-              <input type="text" name="subject" />
-              <textarea name="message"></textarea>
-              <input type="hidden" name="form-name" value="contact" />
-            </form>
             {children}
           </main>
           <FloatingContactButton />
