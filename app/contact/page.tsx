@@ -90,36 +90,36 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <AnimateOnScroll>
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold mb-4">Get in Touch</h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Get in Touch</h1>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto px-4">
               Ready to start your project? We&apos;re here to turn your vision into reality.
             </p>
           </div>
         </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Information */}
           <AnimateOnScroll>
-            <div className="space-y-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-8 sm:space-y-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                 {contactInfo.map((info, index) => (
                   <div
                     key={index}
-                    className="bg-white/5 backdrop-blur-sm p-6 rounded-xl hover:bg-white/10 transition-all duration-300"
+                    className="bg-white/5 backdrop-blur-sm p-4 sm:p-6 rounded-xl hover:bg-white/10 transition-all duration-300"
                   >
-                    <div className="text-white mb-4">{info.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2">{info.title}</h3>
-                    <p className="text-gray-300">{info.details}</p>
+                    <div className="text-white mb-3 sm:mb-4">{info.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">{info.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-300">{info.details}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl">
-                <h3 className="text-2xl font-bold mb-4">Why Choose Rebiuld?</h3>
-                <ul className="space-y-4 text-gray-300">
+              <div className="bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-xl">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4">Why Choose Rebiuld?</h3>
+                <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-300">
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
                     Expert craftsmanship and attention to detail
@@ -143,12 +143,12 @@ export default function Contact() {
 
           {/* Contact Form */}
           <AnimateOnScroll>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8">
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 sm:p-8">
               {isSubmitted ? (
-                <div className="text-center py-16">
-                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-500/20 mb-4">
+                <div className="text-center py-8 sm:py-16">
+                  <div className="mx-auto flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-green-500/20 mb-4">
                     <svg
-                      className="h-6 w-6 text-green-500"
+                      className="h-5 w-5 sm:h-6 sm:w-6 text-green-500"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -161,10 +161,10 @@ export default function Contact() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Thank you!</h3>
-                  <p className="text-gray-300 mb-8">Your message has been sent successfully! We will get back to you soon.</p>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2">Thank you!</h3>
+                  <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8">Your message has been sent successfully! We will get back to you soon.</p>
                   <button
-                    className="px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                    className="px-5 sm:px-6 py-2 sm:py-3 bg-white text-black rounded-full text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors"
                     onClick={() => setIsSubmitted(false)}
                   >
                     Send another message
@@ -177,7 +177,7 @@ export default function Contact() {
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   <input type="hidden" name="form-name" value="contact" />
                   <div className="hidden">
@@ -185,9 +185,9 @@ export default function Contact() {
                       Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
                     </label>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium mb-1.5 sm:mb-2">
                         Name
                       </label>
                       <input
@@ -196,14 +196,14 @@ export default function Contact() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white text-sm sm:text-base"
                         placeholder="Your name"
                         required
                         disabled={isSubmitting}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium mb-1.5 sm:mb-2">
                         Email
                       </label>
                       <input
@@ -212,7 +212,7 @@ export default function Contact() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white text-sm sm:text-base"
                         placeholder="your.email@example.com"
                         required
                         disabled={isSubmitting}
@@ -220,7 +220,7 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium mb-1.5 sm:mb-2">
                       Subject
                     </label>
                     <input
@@ -229,14 +229,14 @@ export default function Contact() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white text-sm sm:text-base"
                       placeholder="What is this regarding?"
                       required
                       disabled={isSubmitting}
                     />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium mb-1.5 sm:mb-2">
                       Message
                     </label>
                     <textarea
@@ -245,7 +245,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all duration-300 text-white text-sm sm:text-base"
                       placeholder="How can we help you?"
                       required
                       disabled={isSubmitting}
@@ -253,8 +253,8 @@ export default function Contact() {
                   </div>
 
                   {error && (
-                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-                      <p className="text-sm text-red-400">{error}</p>
+                    <div className="p-3 sm:p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                      <p className="text-xs sm:text-sm text-red-400">{error}</p>
                     </div>
                   )}
 
@@ -262,14 +262,14 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 ${
+                      className={`px-6 sm:px-8 py-2 sm:py-3 bg-white text-black rounded-full text-sm sm:text-base font-semibold hover:bg-gray-100 transition-all duration-300 ${
                         isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                       }`}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center">
                           <svg
-                            className="animate-spin -ml-1 mr-2 h-4 w-4 text-black"
+                            className="animate-spin -ml-1 mr-2 h-3 w-3 sm:h-4 sm:w-4 text-black"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -288,7 +288,7 @@ export default function Contact() {
                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             ></path>
                           </svg>
-                          Sending...
+                          <span className="text-sm sm:text-base">Sending...</span>
                         </span>
                       ) : (
                         "Send Message"

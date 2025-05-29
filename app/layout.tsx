@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   title: "REBiULD Construction",
   description:
     "Where we build your dreams!",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -40,7 +46,7 @@ export default function RootLayout({
           <nav className="sticky top-0 z-50">
             <Navbar />
           </nav>
-          <main className="flex-grow w-full px-[10%]">
+          <main className="flex-grow w-full px-4 sm:px-6 md:px-8 lg:px-[10%]">
             {children}
           </main>
           <FloatingContactButton />

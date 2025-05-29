@@ -19,25 +19,25 @@ const Footer: React.FC = () => {
   }));
 
   return (
-    <footer className="bg-black text-white py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <h3 className="text-lg font-semibold mb-4 text-center">
+    <footer className="bg-black text-white py-6 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <h3 className="text-base sm:text-lg font-semibold mb-4 text-center">
           Service Areas
         </h3>
-        <ul className="flex flex-wrap justify-center gap-6">
+        <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-6 px-2">
           {normalizedPages.map((page) => (
             <li key={page.id}>
               <Link
                 href={page.url}
-                className="text-white hover:text-slate-400 transition-colors duration-300"
+                className="text-sm sm:text-base text-white hover:text-slate-400 transition-colors duration-300"
               >
                 {page.title}
               </Link>
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-sm text-center">
-          © {new Date().getFullYear()} Shine & Seal. All rights reserved.
+        <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-center text-gray-400">
+          © {new Date().getFullYear()} Rebiuld Construction. All rights reserved.
         </p>
       </div>
     </footer>
