@@ -86,6 +86,7 @@ export default function Gallery() {
   const [images, setImages] = useState<SmugMugImage[]>([]);
   const [selectedImage, setSelectedImage] = useState<SmugMugImage | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [[page, direction], setPage] = useState([0, 0]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -144,6 +145,7 @@ export default function Gallery() {
         setImages(filteredImages);
       } catch (error) {
         console.error("Error loading gallery images:", error);
+        setError("Failed to load gallery images. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -185,6 +187,14 @@ export default function Gallery() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-red-500">
+        <p>{error}</p>
       </div>
     );
   }

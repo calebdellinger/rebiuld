@@ -1,4 +1,4 @@
-const API_KEY = 'CZfb6xtsvbWqrz7hLjS5TxmF2GxCHHMn';
+const API_KEY = process.env.NEXT_PUBLIC_SMUGMUG_API_KEY;
 const ALBUM_KEY = '464g5S'; // Using the original target album key
 
 interface SmugMugImage {
@@ -44,6 +44,10 @@ function getLargeUrl(thumbnailUrl: string): string {
 }
 
 export async function getGalleryImages(): Promise<SmugMugImage[]> {
+  if (!API_KEY) {
+    throw new Error('SmugMug API key is not configured. Please set NEXT_PUBLIC_SMUGMUG_API_KEY environment variable.');
+  }
+
   try {
     // Get images directly from the album
     const imagesUrl = `https://api.smugmug.com/api/v2/album/${ALBUM_KEY}!images?APIKey=${API_KEY}`;
@@ -110,6 +114,6 @@ export async function getGalleryImages(): Promise<SmugMugImage[]> {
     console.error('Error in getGalleryImages:', error);
     // Rethrow or return empty array based on desired error handling for the component
     // For now, returning empty array as per original example to prevent page crash
-    return []; 
+    throw error;
   }
 } 
