@@ -31,5 +31,10 @@
         "id": 7,
         "title": "Dirt Work, Excavation, and Grading",
         "src": "https://photos.smugmug.com/RebiuldWeb/i-DHSmNHP/0/LxgdJQjczgKDSqhxKHQhcmkWk48T7Xz9H7Xq5cZss/X5/6F4A3334-X5.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Concrete Demo",
+        "slug": "concrete-demo"
     }
 ]
