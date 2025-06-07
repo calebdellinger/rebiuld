@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useCallback, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getGalleryImages } from "@/lib/smugmug";
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
 
@@ -140,8 +139,12 @@ export default function Gallery() {
   useEffect(() => {
     async function loadImages() {
       try {
-        const galleryImages = await getGalleryImages();
-        const filteredImages = galleryImages.filter(image => !image.IsVideo);
+        const res = await fetch('/api/gallery');
+        if (!res.ok) {
+          throw new Error(`Failed to fetch gallery images: ${res.statusText}`);
+        }
+        const galleryImages = await res.json();
+        const filteredImages = galleryImages.filter((image: SmugMugImage) => !image.IsVideo);
         setImages(filteredImages);
       } catch (error) {
         console.error("Error loading gallery images:", error);
