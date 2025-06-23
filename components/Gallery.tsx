@@ -139,12 +139,15 @@ export default function Gallery() {
   useEffect(() => {
     async function loadImages() {
       try {
-        const res = await fetch('/api/gallery');
-        if (!res.ok) {
-          throw new Error(`Failed to fetch gallery images: ${res.statusText}`);
+        const response = await fetch('/api/gallery');
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
         }
-        const galleryImages = await res.json();
-        const filteredImages = galleryImages.filter((image: SmugMugImage) => !image.IsVideo);
+        
+        const galleryImages: SmugMugImage[] = await response.json();
+        const filteredImages = galleryImages.filter(image => !image.IsVideo);
         setImages(filteredImages);
       } catch (error) {
         console.error("Error loading gallery images:", error);

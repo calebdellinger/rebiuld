@@ -2,7 +2,20 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, set up your environment variables:
+
+### Local Development
+Create a `.env.local` file in the root directory with:
+```
+SMUGMUG_API_KEY=your_smugmug_api_key_here
+```
+
+### Production (Netlify)
+Set the environment variable in your Netlify dashboard:
+- Go to Site settings > Environment variables
+- Add `SMUGMUG_API_KEY` with your SmugMug API key value
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -19,6 +32,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## API Configuration
+
+The gallery page now uses a server-side API route (`/api/gallery`) to proxy SmugMug API calls instead of making them directly from the client. This provides better security and performance.
+
+### Key Changes:
+- API key is now server-side only (no `NEXT_PUBLIC_` prefix)
+- Gallery images are fetched through `/api/gallery` endpoint
+- Added caching headers for better performance
+- Better error handling and logging
 
 ## Learn More
 

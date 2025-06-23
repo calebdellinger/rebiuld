@@ -1,7 +1,9 @@
-import { NextResponse } from 'next/server';
+// DEPRECATED: This client-side SmugMug API integration has been replaced with a server-side API route.
+// The gallery now uses /api/gallery endpoint for better security and performance.
+// This file is kept for reference but should not be used in new code.
 
-const API_KEY = process.env.SMUGMUG_API_KEY; // Remove NEXT_PUBLIC_ prefix for server-side
-const ALBUM_KEY = '464g5S';
+const API_KEY = process.env.NEXT_PUBLIC_SMUGMUG_API_KEY;
+const ALBUM_KEY = '464g5S'; // Using the original target album key
 
 interface SmugMugImage {
   ImageKey: string;
@@ -41,12 +43,9 @@ function getLargeUrl(thumbnailUrl: string): string {
     .replace(/-Th\./, '.');
 }
 
-export async function GET() {
+export async function getGalleryImages(): Promise<SmugMugImage[]> {
   if (!API_KEY) {
-    return NextResponse.json(
-      { error: 'SmugMug API key is not configured' },
-      { status: 500 }
-    );
+    throw new Error('SmugMug API key is not configured. Please set NEXT_PUBLIC_SMUGMUG_API_KEY environment variable.');
   }
 
   try {
@@ -62,30 +61,21 @@ export async function GET() {
     if (!imagesResponse.ok) {
       const errorText = await imagesResponse.text();
       console.error('SmugMug API Error:', imagesResponse.status, imagesResponse.statusText, errorText);
-      return NextResponse.json(
-        { error: `Images fetch failed: ${imagesResponse.status} ${imagesResponse.statusText}` },
-        { status: imagesResponse.status }
-      );
+      throw new Error(`Images fetch failed: ${imagesResponse.status} ${imagesResponse.statusText}. Details: ${errorText}`);
     }
 
     const data: SmugMugResponse = await imagesResponse.json();
     
     if (data.Code && data.Code !== 200) {
       console.error('SmugMug API returned an error code:', data.Code, data.Message, data);
-      return NextResponse.json(
-        { error: `SmugMug API Error: ${data.Message || 'Unknown error'} (Code: ${data.Code})` },
-        { status: 400 }
-      );
+      throw new Error(`SmugMug API Error: ${data.Message || 'Unknown error'} (Code: ${data.Code})`);
     }
 
     if (!data.Response?.AlbumImage) {
-      return NextResponse.json(
-        { error: 'Invalid response structure from SmugMug API' },
-        { status: 500 }
-      );
+      throw new Error('Invalid response structure from SmugMug API.');
     }
     
-    const processedImages = data.Response.AlbumImage.map(image => {
+    return data.Response.AlbumImage.map(image => {
       const mappedImage: SmugMugImage = {
         ...image,
         Caption: image.Caption || '',
@@ -99,18 +89,8 @@ export async function GET() {
       }
       return mappedImage;
     });
-
-    // Set cache headers for better performance
-    return NextResponse.json(processedImages, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600', // Cache for 5 minutes, stale for 10 minutes
-      },
-    });
   } catch (error) {
-    console.error('Error in gallery API route:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    console.error('Error in getGalleryImages:', error);
+    throw error;
   }
 } 
