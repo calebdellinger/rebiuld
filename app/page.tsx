@@ -1,12 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import foundation from "@/public/foundation16.jpg";
-import logo from "@/public/rebiuldLogo.png"
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import AnimatedLogo from "@/components/AnimatedLogo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Rebiuld Construction',
+  title: 'Glacier Peak Concrete',
   description: 'Where we build your dreams!',
 };
 
@@ -17,24 +16,28 @@ function Home() {
       <div className="relative p-4 sm:p-6 lg:p-10">
         {/* Background Image */}
         <Image
-          src={foundation}
+          src="/foundation16.jpg"
           alt="Hero Image"
           className="w-full aspect-video object-cover rounded-xl"
+          width={1920}
+          height={1080}
         />
         
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black opacity-50 flex flex-col sm:flex-row items-center justify-center gap-4">
-          {/* Centered Text */}
-          <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
-            Welcome to
-          </h1>
-          <Image
-            src={logo}
-            alt="Rebiuld Construction"
-            className="w-32 sm:w-40 lg:w-[200px] h-auto"
-            width={200}
-            height={100}
-          /> 
+        <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* Background overlay */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+          {/* Content with full opacity */}
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
+              Welcome to
+            </h1>
+            <AnimatedLogo
+              width={400}
+              height={200}
+              className="w-64 sm:w-80 lg:w-[400px] h-auto"
+            />
+          </div>
         </div>
       </div>
 

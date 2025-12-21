@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingContactButton from "@/components/FloatingContactButton";
 import Script from "next/script";
-
-const inter = Inter({ subsets: ["cyrillic"] });
 
 export const metadata: Metadata = {
   title: "REBiULD Construction",
@@ -29,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://use.typekit.net/wmp8ajj.css" />
         <Script id="theme-script" strategy="beforeInteractive">
           {`
             try {
@@ -41,7 +40,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.className} bg-black min-h-screen flex flex-col`}>
+      <body className="bg-black min-h-screen flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <nav className="sticky top-0 z-50">
             <Navbar />

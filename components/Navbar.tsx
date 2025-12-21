@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/public/rebiuldLogo.png";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -20,10 +19,10 @@ export default function Navbar() {
         <Link href="/" className="text-2xl font-bold text-white group">
           <Image 
             className="transform transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:rotate-3" 
-            src={logo} 
+            src="/glacierPeakLogo.svg" 
             alt="Rebiuld Construction" 
-            width={100} 
-            height={100} 
+            width={225} 
+            height={225} 
           />
         </Link>
       </div>
